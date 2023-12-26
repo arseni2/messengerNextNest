@@ -4,6 +4,7 @@ import {UsersEntity} from "./users.entity";
 import {InjectRepository} from "@nestjs/typeorm";
 import {UsersDto} from "./users.dto";
 import * as hmacSHA512 from 'crypto-js/hmac-SHA512';
+import {AuthLoginDto} from "../auth/auth.login.dto";
 
 @Injectable()
 export class UsersService {
@@ -16,6 +17,10 @@ export class UsersService {
     }
     private passToHash(password: string) {
         return hmacSHA512(password, "123")
+    }
+
+    login(loginDto: AuthLoginDto) {
+
     }
     createUsers(userDto: UsersDto) {
         let password = this.passToHash(userDto.password)
